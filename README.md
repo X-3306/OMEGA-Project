@@ -1,4 +1,6 @@
-# OMEGA Protocol 2.0
+<p align="center">
+  <img src="ΩMEGA.png" alt="OMEGA-Project" width="100%">
+</p>
 
 **A transparent, honest Windows data sanitization tool that separates file-level and drive-level erasure workflows.**
 
@@ -31,7 +33,7 @@ OMEGA Protocol is a Windows-only data sanitization framework that:
 3. **Offline Support** – Provides a CLI runner for WinPE environments where the live OS cannot guarantee safe access
 4. **Compliance Reporting** – Generates audit trails in JSON, CSV, HTML, and PDF formats with explicit success/failure states
 
-### Core Philosophy
+### CORE PHILOSOPHY
 
 **The application does not overstate assurance levels.**
 
@@ -181,34 +183,34 @@ If the DLL is missing, Python uses equivalent overwrite passes. Slower, but same
 - Overwrite is verified via re-read
 - File metadata is cleared and file is unlinked
 - **Applies to**: Single files on HDD; single files on SSD with warning
-- **Why not stronger?**: We cannot verify NAND cell state on SSD or garbage collection behavior on HDD
+- **Why not stronger?**: I cannot verify NAND cell state on SSD or garbage collection behavior on HDD
 
 ✅ **Device Clear** (HDD data disk)
 - `IOCTL_STORAGE_REINITIALIZE_MEDIA` is accepted by firmware
 - All logical blocks are marked as deallocated
-- **Why not stronger?**: We cannot verify what the firmware actually does; we only know it accepted the command
+- **Why not stronger?**: I cannot verify what the firmware actually does; we only know it accepted the command
 
 ✅ **Device Purge** (NVMe data disk or offline SATA SSD)
 - Same as Device Clear, but reported for NVMe or after offline run
 - **Why the distinction?** NVMe drivers more consistently implement the IOCTL correctly
 
-### What We Don't Promise
+### What I Don't Promise
 
-❌ **Laboratory NAND cell recovery** – Out of scope. We cannot prevent microscopic analysis of discarded SSD cells.
+❌ **Laboratory NAND cell recovery** – Out of scope. I cannot prevent microscopic analysis of discarded SSD cells.
 
 ❌ **Firmware defects** – If the hardware firmware is broken or malicious, no software sanitization is reliable.
 
-❌ **Cloud/backup/shadow copies** – We only sanitize the local instance. Copies elsewhere are your responsibility.
+❌ **Cloud/backup/shadow copies** – It only sanitize the local instance. Copies elsewhere are your responsibility.
 
-❌ **System disk online** – We cannot safely erase the disk your OS runs on while it's running.
+❌ **System disk online** – it cannot safely erase the disk your OS runs on while it's running.
 
-❌ **USB firmware behavior** – We cannot predict or verify what cheap USB controller firmware does with overwrite commands.
+❌ **USB firmware behavior** – It cannot predict or verify what cheap USB controller firmware does with overwrite commands.
 
 ### Reporting Rule (Key Principle)
 
-**If we cannot prove it, we report the limitation.**
+**If program cannot prove it, he report the limitation.**
 
-If a drive reports as SSD but we don't have safe device-level commands, the report will show `Destroy Required` or `Unsupported` instead of claiming success.
+If a drive reports as SSD but program don't have safe device-level commands, the report will show `Destroy Required` or `Unsupported` instead of claiming success.
 
 ---
 
@@ -218,7 +220,7 @@ If a drive reports as SSD but we don't have safe device-level commands, the repo
 
 - **Windows 10/11** (x64)
 - **Python 3.12+**
-- **Visual Studio 2022** (if building native backend; requires MSVC and Windows SDK)
+- **Visual Studio 2022** (if you want re-building native backend; requires MSVC and Windows SDK)
 - **CMake 3.20+** (optional; for local DLL rebuild)
 
 ### Setup
@@ -339,14 +341,14 @@ pyproject.toml          # Python package metadata and dependencies
 
 OMEGA Protocol is designed to **reduce recoverability** of data after **intentional sanitization workflows**, not to guarantee absolute information-theoretic security.
 
-### What We Protect Against
+### What Omega Protect Against
 
 ✅ Ordinary recovery after `delete` or `unlink`  
 ✅ Logical recovery attempts against HDD file remnants  
 ✅ Supported NVMe device-level erasure  
 ✅ Operator mistakes from unclear preflight information  
 
-### What We Don't Protect Against
+### What Omega Don't Protect Against
 
 ❌ NAND-level cell recovery (laboratory forensics)  
 ❌ Malicious or defective firmware  
@@ -367,10 +369,6 @@ Every session generates:
 
 ---
 
-## Contributing
-
-We welcome contributions, but please read the [DEVELOPMENT.md](DEVELOPMENT.md) guide first.
-
 ### Key Areas
 - Additional report templates
 - Offline runner improvements for niche storage devices
@@ -381,7 +379,7 @@ We welcome contributions, but please read the [DEVELOPMENT.md](DEVELOPMENT.md) g
 
 ## License
 
-[Add your license here, e.g., MIT, Apache 2.0]
+[LICENSE](https://github.com/X-3306/OMEGA-Project/blob/main/LICENSE)
 
 ---
 
@@ -397,7 +395,7 @@ A: No. Blocking system disk sanitization online protects against accidental OS d
 A: Python fallback handles file sanitization (slower but same logic). Device commands fall back to WinAPI.
 
 **Q: Why does it say "Best-Effort" on my SSD?**  
-A: SSDs use wear-leveling and TRIM. The OS doesn't always know where your data physically lives. We're honest about it instead of pretending otherwise.
+A: SSDs use wear-leveling and TRIM. The OS doesn't always know where your data physically lives. I'm honest about it instead of pretending otherwise.
 
 **Q: Can I run this against network shares?**  
 A: No. Network behavior is unreliable and outside our threat model. Sanitize local drives only.
