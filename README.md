@@ -383,7 +383,7 @@ Every session generates:
 
 [LICENSE](https://github.com/X-3306/OMEGA-Project/blob/main/LICENSE) 
 
-[COMMERSIAL](https://github.com/X-3306/OMEGA-Project/blob/main/COMMERCIAL.md)
+[COMMERCIAL](https://github.com/X-3306/OMEGA-Project/blob/main/COMMERCIAL.md)
 
 ---
 
