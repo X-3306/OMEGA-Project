@@ -176,7 +176,7 @@ If the DLL is missing, Python uses equivalent overwrite passes. Slower, but same
 
 ## Assurance Levels & Guarantees
 
-### What We Guarantee
+### What I Guarantee
 
 ✅ **Best-Effort File Sanitize**
 - File content is overwritten twice (0x00, then random)
@@ -235,6 +235,8 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -e .[dev,build]
 ```
+
+## EXAMPLE-USE (.exe version): [Youtube](https://youtu.be/Rak6qHz1oVs)
 
 ### Building the Native Backend (Optional)
 
@@ -402,4 +404,4 @@ A: No. Network behavior is unreliable and outside our threat model. Sanitize loc
 
 ---
 
-**For detailed architecture, API contracts, and threat model analysis, see the [docs/](.) directory.**
+**For detailed architecture, API contracts, and threat model analysis, see the [docs/](https://github.com/X-3306/OMEGA-Project/tree/main/docs) directory.**
