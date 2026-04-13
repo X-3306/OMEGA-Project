@@ -8,7 +8,7 @@ version = "2.0.0"
 description = "Transparent Windows data sanitization suite with PySide6 GUI and native storage backend."
 readme = "README.md"
 requires-python = ">=3.12"
-authors = [{ name = "OMEGA Protocol Contributors" }]
+authors = [{ name = "X-3306" }]
 license = { text = "GNU Affero General Public License v3.0" }
 dependencies = [
   "PySide6>=6.10,<7",
