@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OMEGA Protocol Report</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #06101c;
+        --panel: #0d1726;
+        --line: #20344a;
+        --text: #eef5ff;
+        --muted: #8ea2ba;
+        --accent: #52d3ff;
+        --success: #63f0a9;
+        --warning: #f4c66d;
+        --danger: #ff7b86;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top right, rgba(82, 211, 255, 0.18), transparent 22rem),
+          linear-gradient(180deg, #07111d 0%, #04080f 100%);
+        color: var(--text);
+      }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 32px; }
+      .hero, .panel {
+        background: rgba(13, 23, 38, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      }
+      .hero { padding: 28px; margin-bottom: 18px; }
+      .eyebrow { color: var(--accent); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+      h1 { margin: 8px 0 10px; font-size: 34px; }
+      .meta { color: var(--muted); font-size: 14px; }
+      .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 18px; }
+      .panel { padding: 20px; }
+      .card-title { margin: 0 0 10px; font-size: 18px; }
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(82, 211, 255, 0.1);
+        color: var(--accent);
+        font-size: 12px;
+        margin-right: 8px;
+      }
+      table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+      th, td { text-align: left; padding: 12px 10px; border-top: 1px solid var(--line); vertical-align: top; }
+      th { color: var(--muted); font-weight: 600; }
+      .ok { color: var(--success); }
+      .warn { color: var(--warning); }
+      .fail { color: var(--danger); }
+      ul { margin: 8px 0 0 18px; padding: 0; }
+      code { color: var(--accent); font-family: "Consolas", monospace; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <div class="eyebrow">OMEGA Protocol</div>
+        <h1>Session Report {{ session_id }}</h1>
+        <div class="meta">Mode: {{ mode }} • Dry run: {{ dry_run }} • Generated: {{ generated_at }} • Native backend: {{ native_bridge_state }}</div>
+      </section>
+      <section class="grid">
+        <article class="panel">
+          <h2 class="card-title">Plans</h2>
+          <div class="pill">{{ plans | length }} targets</div>
+          <div class="pill">{{ results | selectattr("success") | list | length }} successful</div>
+        </article>
+        <article class="panel">
+          <h2 class="card-title">Reporting promise</h2>
+          <p class="meta">This report never overstates assurance. SSD file workflows remain best-effort even when overwrite and unlink steps succeed.</p>
+        </article>
+      </section>
+      <section class="panel">
+        <h2 class="card-title">Results</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Target</th>
+              <th>Status</th>
+              <th>Assurance</th>
+              <th>Method</th>
+              <th>Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in results %}
+            <tr>
+              <td><strong>{{ result.display_name }}</strong><br><code>{{ result.target }}</code></td>
+              <td class="{{ 'ok' if result.success else 'fail' }}">{{ "Success" if result.success else "Blocked / Failed" }}</td>
+              <td>{{ result.assurance_achieved }}</td>
+              <td>{{ result.method_name }}</td>
+              <td>
+                {{ result.summary }}<br>
+                <span class="meta">{{ result.detail }}</span>
+                {% if result.warnings %}
+                <ul>
+                  {% for warning in result.warnings %}
+                  <li class="warn">{{ warning }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

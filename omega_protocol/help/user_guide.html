@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OMEGA Protocol User Guide</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07111b;
+        --panel: rgba(14, 22, 35, 0.92);
+        --line: #23364b;
+        --text: #eef6ff;
+        --muted: #9bb0c8;
+        --accent: #64d7ff;
+        --success: #77efb2;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top right, rgba(100, 215, 255, 0.15), transparent 24rem),
+          linear-gradient(180deg, #091320 0%, #050a11 100%);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 36px 24px 56px;
+      }
+      .hero,
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28);
+      }
+      .hero {
+        padding: 30px;
+        margin-bottom: 18px;
+      }
+      .eyebrow {
+        color: var(--accent);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 10px 0 12px;
+        font-size: 36px;
+      }
+      p,
+      li {
+        line-height: 1.65;
+        color: var(--muted);
+      }
+      .grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin-bottom: 18px;
+      }
+      .card {
+        padding: 22px;
+      }
+      h2 {
+        margin-top: 0;
+        font-size: 20px;
+      }
+      h3 {
+        margin-bottom: 8px;
+        font-size: 15px;
+        color: var(--text);
+      }
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(100, 215, 255, 0.1);
+        color: var(--accent);
+        font-size: 12px;
+        margin-right: 8px;
+      }
+      strong {
+        color: var(--text);
+      }
+      .success {
+        color: var(--success);
+      }
+      ul {
+        padding-left: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <div class="eyebrow">OMEGA Protocol</div>
+        <h1>User Guide</h1>
+        <p>
+          OMEGA Protocol is a Windows data sanitization tool designed to make
+          secure deletion easier to understand and easier to control. The app
+          focuses on practical workflows, clear operator feedback and honest
+          results.
+        </p>
+        <div>
+          <span class="badge">File sanitize</span>
+          <span class="badge">Drive sanitize</span>
+          <span class="badge">Reports</span>
+          <span class="badge">Dry run</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>What each area does</h2>
+          <h3>Files</h3>
+          <p>Add, review and remove file targets for file-level sanitization.</p>
+          <h3>Drives</h3>
+          <p>Shows available storage targets. In limited mode the app may show logical volumes for visibility while waiting for administrator access.</p>
+          <h3>Preflight</h3>
+          <p>Shows what the tool plans to do before anything destructive happens.</p>
+          <h3>Report</h3>
+          <p>Displays the final session summary and the report files created for that run.</p>
+        </article>
+
+        <article class="card">
+          <h2>What the buttons do</h2>
+          <ul>
+            <li><strong>Add Files</strong>: add one or more files to the current session.</li>
+            <li><strong>Remove Selected Files</strong>: remove selected file entries from the queue.</li>
+            <li><strong>Refresh Drives</strong>: reload drive inventory and update the preflight view.</li>
+            <li><strong>Clear Selection</strong>: remove the current selection from the session.</li>
+            <li><strong>Run Session</strong>: start the selected workflow after confirmation when required.</li>
+            <li><strong>Help</strong>: open this user guide in your browser.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>What Dry Run means</h2>
+          <p>
+            <strong>Dry Run</strong> lets you preview the workflow without making
+            destructive changes. It is useful when you want to confirm the
+            targets, check warnings and understand the expected method before
+            real execution.
+          </p>
+          <p class="success">
+            Dry Run is ideal for validation, training, demonstrations and final
+            checks before a real sanitize action.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>What the tool does to reduce recovery risk</h2>
+          <ul>
+            <li>Validates paths and blocks risky path types such as network targets or reparse points.</li>
+            <li>Uses a layered overwrite-and-remove workflow for supported file targets.</li>
+            <li>Uses device-oriented workflows when Windows and the storage stack expose them.</li>
+            <li>Creates auditable reports so each run can be reviewed later.</li>
+            <li>Downgrades results instead of pretending a stronger erase level was achieved.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Why SSD results can vary</h2>
+          <p>
+            SSD media uses internal management techniques that can move data away
+            from the exact filesystem location a user can see. Because of that,
+            file-level workflows on SSD media are presented as
+            <strong>best effort</strong>.
+          </p>
+          <p>
+            For whole-drive workflows, OMEGA Protocol prefers device-oriented
+            methods when the operating system and the hardware expose them. That
+            path can be much stronger than a normal file delete.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Why other media can be simpler</h2>
+          <p>
+            On some rotational drives and on some controller paths, the storage
+            stack can expose a clearer relationship between the request and the
+            physical media action. In those cases OMEGA Protocol can report a
+            stronger result, but only after the system actually accepts the
+            requested workflow.
+          </p>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
